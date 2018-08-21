@@ -34,6 +34,10 @@ class KeywordCount:
         #init for emoVoice()
         self.emoTerm = []
         self.emoLoc = []
+        #init for keywordQuestionmark()
+        self.keywordQNum = defaultdict(dict)
+        self.keywordQPer = defaultdict(dict)
+
         print("Reading data...")
         print("Parsing by words...")
         with open(fname, encoding='utf-8', errors='ignore') as f:
@@ -184,13 +188,15 @@ class KeywordCount:
 
     def keywordQuestionmark(self):
         print('Starting keyword in questionmarks statistics...')
-        l = len(self.data)
-        for i in range(l):
-            if self.data[i] == '?':
-                self.questionStat += 1
-                self.questionLoc.append(float(i)/float(l))
-        self.questionPer = float(self.questionStat)/float(self.sentNum)
-        print('Questionmark statistics done.')
+        for k1 in self.keywordCTS.keys():
+            for k2 in self.keywordCTS[k1]:
+                if self.keywordStat[k1][k2] > 0:
+                    self.keywordQNum[k1][k2] = 0
+                    for s in self.sents:
+                        self.keywordQNum[k1][k2] += int('?' in self.sents[i]) * self.sents[i].count(k2)
+                    self.keywordQPer[k1][k2] = float(self.keywordQNum[k1][k2])/self.keywordStat[k1][k2]
+                    self.keywordQOutput[k1][k2] = (self.keywordQNum[k1][k2],self.keywordStat[k1][k2],self.keywordQPer[k1][k2])
+        print('keyword with questionmarks statistics done.')
 
 
 # %% run global
@@ -199,6 +205,7 @@ t1.updateWordCount()
 t1.updateKeywordStatistics()
 t1.questionMark()
 t1.emoVoice()
+t1.keywordQuestionmark()
 f = open('Feature'+t1.name,'w')
 #file information
 f.write('File name: ' + t1.name + '\n')
@@ -267,4 +274,10 @@ f.write('=======================================================================
 f.write('Feature 4-3: speech length in metric of sentences' + '\n')
 f.write(str(t1.sentNum))
 f.write('\n')
+f.write('========================================================================================' + '\n')
+
+# 5. keyword with questionmarks
+# 5-1. keyword num with Q, keyword num all, keyword percentage with Q
+f.write('Feature 5-1: keywords with questionmarks (num with questionmarks, num all, percentage with questionmarks)' + '\n')
+f.write(str(t1.keywordQOutput))
 f.close()
