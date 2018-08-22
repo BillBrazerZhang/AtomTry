@@ -1,0 +1,6 @@
+File name: Transcript7.txt
+========================================================================================
+Object: Overall
+========================================================================================
+Feature 5-1: keywords with questionmarks (num with questionmarks, num all, percentage with questionmarks)
+defaultdict(<class 'dict'>, {'Agenda': {'most important': (0, 1, 0.0), 'talk about': (1, 6, 0.16666666666666666), 'you like to': (0, 1, 0.0), 'work on': (0, 2, 0.0), 'you want to': (1, 1, 1.0)}, 'Feedback': {'last time': (0, 3, 0.0), 'skill': (0, 1, 0.0), 'goal': (2, 7, 0.2857142857142857)}, 'Understanding': {'i see': (0, 1, 0.0), 'understand': (0, 1, 0.0), 'see': (1, 9, 0.1111111111111111), 'know': (1, 47, 0.02127659574468085), 'grasp': (0, 1, 0.0)}, 'Interpersonal Effectiveness': {'hard': (0, 3, 0.0)}, 'Guided Discovery': {'meaning': (0, 1, 0.0), 'mean': (0, 6, 0.0), 'know': (1, 47, 0.02127659574468085)}, 'Focus on Key Cognitions': {'you do': (2, 10, 0.2), 'connect': (0, 1, 0.0), 'make you': (0, 1, 0.0), 'think': (2, 9, 0.2222222222222222)}, 'Homework': {'homework': (1, 6, 0.16666666666666666), 'review': (1, 1, 1.0), 'problem': (0, 1, 0.0), 'at home': (2, 6, 0.3333333333333333), 'skill': (0, 1, 0.0), 'goal': (2, 7, 0.2857142857142857), 'better': (1, 4, 0.25)}})

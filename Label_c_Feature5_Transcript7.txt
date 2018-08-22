@@ -1,0 +1,6 @@
+File name: Transcript7.txt
+========================================================================================
+Object: c
+========================================================================================
+Feature 5-1: keywords with questionmarks (num with questionmarks, num all, percentage with questionmarks)
+defaultdict(<class 'dict'>, {'Agenda': {'most important': (0, 1, 0.0), 'work on': (0, 1, 0.0)}, 'Understanding': {'understand': (0, 1, 0.0), 'know': (0, 9, 0.0)}, 'Interpersonal Effectiveness': {'hard': (0, 1, 0.0)}, 'Guided Discovery': {'meaning': (0, 1, 0.0), 'mean': (0, 3, 0.0), 'know': (0, 9, 0.0)}, 'Focus on Key Cognitions': {'think': (1, 7, 0.14285714285714285)}, 'Homework': {'homework': (0, 2, 0.0), 'problem': (0, 1, 0.0), 'at home': (0, 2, 0.0), 'better': (1, 2, 0.5)}})
