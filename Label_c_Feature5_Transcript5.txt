@@ -1,6 +1,0 @@
-File name: Transcript5.txt
-========================================================================================
-Object: c
-========================================================================================
-Feature 5-1: keywords with questionmarks (num with questionmarks, num all, percentage with questionmarks)
-defaultdict(<class 'dict'>, {'Agenda': {'last week': (0, 1, 0.0), 'you want to': (1, 1, 1.0)}, 'Feedback': {'last time': (0, 2, 0.0), 'last week': (0, 1, 0.0), 'skill': (1, 1, 1.0)}, 'Understanding': {'i see': (0, 1, 0.0), 'see': (0, 12, 0.0), 'know': (0, 12, 0.0)}, 'Guided Discovery': {'mean': (0, 1, 0.0), 'know': (0, 12, 0.0)}, 'Focus on Key Cognitions': {'you do': (0, 1, 0.0), 'thought': (1, 2, 0.5), 'think': (0, 8, 0.0)}, 'Homework': {'expect': (2, 4, 0.5), 'problem': (0, 1, 0.0), 'skill': (1, 1, 1.0)}})

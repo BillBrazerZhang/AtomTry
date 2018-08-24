@@ -38,6 +38,10 @@ class KeywordCount:
         self.keywordQNum = defaultdict(dict)
         self.keywordQPer = defaultdict(dict)
         self.keywordQOutput = defaultdict(dict)
+        #init for nonSpeech()
+        self.nSpeech = []
+        #init for lengthByTurn()
+        self.listTurn = []
 
         print("Reading data...")
         print("Parsing by words...")
@@ -199,6 +203,38 @@ class KeywordCount:
                     self.keywordQOutput[k1][k2] = (self.keywordQNum[k1][k2],self.keywordStat[k1][k2],self.keywordQPer[k1][k2])
         print('keyword with questionmarks statistics done.')
 
+    def nonSpeech(self):
+        with open(self.name, encoding='utf-8', errors='ignore') as f:
+            data = f.read()
+        flag = False
+        start = []
+        end = []
+        for i in range(len(data)):
+            if data[i] == '[':
+                start.append(i)
+                j = i
+                flag = True
+                while(flag == True and j < len(data)-1):
+                    j += 1
+                    if data[j] == ']' or j == len(data)-1:
+                        break
+                if data[j] == ']':
+                    end.append(j)
+        for k in range(len(end)):
+            self.nSpeech.append(data[start[k]:end[k]+1])
+
+    def lengthByTurn(self):
+        tokenizer = nltk.tokenize.TreebankWordTokenizer()
+        with open(self.name, encoding='utf-8', errors='ignore') as f:
+            for line in f:
+                line = line.lower()
+                if (line[0] == 'c'):
+                    self.listTurn.append(('c',len(tokenizer.tokenize(line))))
+                elif (line[0] == 'p'):
+                    self.listTurn.append(('p',len(tokenizer.tokenize(line))))
+
+
+
 # %% child class
 class LabelledKeywordCount(KeywordCount):
     def __init__(self, fname, label):
@@ -229,6 +265,10 @@ class LabelledKeywordCount(KeywordCount):
         self.keywordQNum = defaultdict(dict)
         self.keywordQPer = defaultdict(dict)
         self.keywordQOutput = defaultdict(dict)
+        #init for nonSpeech()
+        self.nSpeech = []
+        #init for lengthByTurn()
+        self.listTurn = []
 
         print("Reading data...")
         from nltk.tokenize import sent_tokenize
@@ -305,13 +345,15 @@ class LabelledKeywordCount(KeywordCount):
 
 
 # %% run global
-t1 = KeywordCount("Transcript7.txt")
+t1 = KeywordCount("Transcript1.txt")
 t1.updateWordCount()
 t1.updateKeywordStatistics()
 t1.questionMark()
 t1.emoVoice()
 t1.keywordQuestionmark()
-f = open('Feature5'+t1.name,'w')
+t1.nonSpeech()
+t1.lengthByTurn()
+f = open('Feature6&7'+t1.name,'w')
 #file information
 f.write('File name: ' + t1.name + '\n')
 f.write('========================================================================================' + '\n')
@@ -383,8 +425,12 @@ f.write('=======================================================================
 #
 # # 5. keyword with questionmarks
 # # 5-1. keyword num with Q, keyword num all, keyword percentage with Q
-f.write('Feature 5-1: keywords with questionmarks (num with questionmarks, num all, percentage with questionmarks)' + '\n')
-f.write(str(t1.keywordQOutput))
+f.write('Feature 6-1: non speech terms' + '\n')
+f.write(str(t1.nSpeech))
+f.write('\n')
+f.write('========================================================================================' + '\n')
+f.write('Feature 7-1: length by turn' + '\n')
+f.write(str(t1.listTurn))
 f.close()
 
 # %% run client
@@ -403,3 +449,7 @@ f.write('=======================================================================
 f.write('Feature 5-1: keywords with questionmarks (num with questionmarks, num all, percentage with questionmarks)' + '\n')
 f.write(str(t1.keywordQOutput))
 f.close()
+
+# %% try:
+a = [1,2]
+print(len(a))
