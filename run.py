@@ -345,20 +345,20 @@ class LabelledKeywordCount(KeywordCount):
 
 
 # %% run global
-t1 = KeywordCount("Transcript1.txt")
-t1.updateWordCount()
-t1.updateKeywordStatistics()
-t1.questionMark()
-t1.emoVoice()
-t1.keywordQuestionmark()
-t1.nonSpeech()
-t1.lengthByTurn()
-f = open('Feature6&7'+t1.name,'w')
-#file information
-f.write('File name: ' + t1.name + '\n')
-f.write('========================================================================================' + '\n')
-f.write('Object: ' + 'Overall' + '\n')
-f.write('========================================================================================' + '\n')
+# t1 = KeywordCount("Transcript1.txt")
+# t1.updateWordCount()
+# t1.updateKeywordStatistics()
+# t1.questionMark()
+# t1.emoVoice()
+# t1.keywordQuestionmark()
+# t1.nonSpeech()
+# t1.lengthByTurn()
+# f = open('lengthByTurn'+t1.name,'w')
+# #file information
+# f.write('File name: ' + t1.name + '\n')
+# f.write('========================================================================================' + '\n')
+# f.write('Object: ' + 'Overall' + '\n')
+# f.write('========================================================================================' + '\n')
 # f.write('Keyword Dictionary:' + '\n')
 # f.write(str(t1.keywordCTS))
 # f.write('\n')
@@ -425,31 +425,53 @@ f.write('=======================================================================
 #
 # # 5. keyword with questionmarks
 # # 5-1. keyword num with Q, keyword num all, keyword percentage with Q
-f.write('Feature 6-1: non speech terms' + '\n')
-f.write(str(t1.nSpeech))
-f.write('\n')
-f.write('========================================================================================' + '\n')
-f.write('Feature 7-1: length by turn' + '\n')
-f.write(str(t1.listTurn))
-f.close()
+# f.write('Feature 6-1: non speech terms' + '\n')
+# f.write(str(t1.nSpeech))
+# f.write('\n')
+# f.write('========================================================================================' + '\n')
+# f.write('Feature 7-1: length by turn' + '\n')
+# f.write(str(t1.listTurn))
+# f.close()
 
-# %% run client
-t1 = LabelledKeywordCount('Transcript1.txt','p')
-t1.updateWordCount()
-t1.updateKeywordStatistics()
-t1.questionMark()
-t1.emoVoice()
-t1.keywordQuestionmark()
-f = open('Label_'+t1.label+'_Feature5_'+t1.name,'w')
-#file information
-f.write('File name: ' + t1.name + '\n')
-f.write('========================================================================================' + '\n')
-f.write('Object: ' + t1.label + '\n')
-f.write('========================================================================================' + '\n')
-f.write('Feature 5-1: keywords with questionmarks (num with questionmarks, num all, percentage with questionmarks)' + '\n')
-f.write(str(t1.keywordQOutput))
-f.close()
+import numpy as np
+import scipy.io as sio
+fileName = ["Transcript1.txt","Transcript3.txt","Transcript4.txt","Transcript5.txt","Transcript6.txt","Transcript7.txt"]
+dataLengthTurn = defaultdict(dict)
+for n in range(len(fileName)):
+    t1 = KeywordCount(fileName[n])
+    t1.updateWordCount()
+    t1.updateKeywordStatistics()
+    t1.questionMark()
+    t1.emoVoice()
+    t1.keywordQuestionmark()
+    t1.nonSpeech()
+    t1.lengthByTurn()
+    ID, Len = [], []
+    for i in t1.listTurn:
+        ID.append(0 if i[0]=='p' else 1)
+        Len.append(i[1])
+    turnArray = np.array([ID, Len])
+    dataLengthTurn['T'+str(n+1)] = turnArray
+    #print(turnArray)
+sio.savemat('lengthByTurn.mat', dataLengthTurn)
+# print(turnArray)
+# # %% run client
+# t1 = LabelledKeywordCount('Transcript1.txt','p')
+# t1.updateWordCount()
+# t1.updateKeywordStatistics()
+# t1.questionMark()
+# t1.emoVoice()
+# t1.keywordQuestionmark()
+# f = open('Label_'+t1.label+'_Feature5_'+t1.name,'w')
+# #file information
+# f.write('File name: ' + t1.name + '\n')
+# f.write('========================================================================================' + '\n')
+# f.write('Object: ' + t1.label + '\n')
+# f.write('========================================================================================' + '\n')
+# f.write('Feature 5-1: keywords with questionmarks (num with questionmarks, num all, percentage with questionmarks)' + '\n')
+# f.write(str(t1.keywordQOutput))
+# f.close()
 
-# %% try:
-a = [1,2]
-print(len(a))
+# # %% try:
+# a = [1,2]
+# print(len(a))
