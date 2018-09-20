@@ -105,7 +105,7 @@ def outputGlobal(fname):
 def lengthByTurnInMat():
     import numpy as np
     import scipy.io as sio
-    fileName = ["Transcript.txt","Transcript3.txt","Transcript4.txt","Transcript5.txt","Transcript6.txt","Transcript7.txt"]
+    fileName = ["Transcript1.txt","Transcript3.txt","Transcript4.txt","Transcript5.txt","Transcript6.txt","Transcript7.txt"]
     dataLengthTurn = defaultdict(dict)
     for n in range(len(fileName)):
         t = KeywordCount(fileName[n])

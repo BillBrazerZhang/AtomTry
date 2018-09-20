@@ -111,7 +111,7 @@ class KeywordCount:
 
         self.keywordCTS['Choices of Intervention'] = {}
 
-        self.keywordCTS['Homework'] = {'homework','review','at home','practice','assignment','assign','get in the way of','work around' \
+        self.keywordCTS['Homework'] = {'homework','review','homework review','at home','practice','assignment','assign','get in the way of','work around' \
                                        ,'assigned','progress','learned','improve','learn','skills','skill','out of session','outside of session' \
                                        ,'goal','better','barrier','in the way','expect','problems','problem','succeed','success'}
 
@@ -337,7 +337,7 @@ class LabelledKeywordCount(KeywordCount):
 
         self.keywordCTS['Choices of Intervention'] = {}
 
-        self.keywordCTS['Homework'] = {'homework','review','at home','practice','assignment','assign','get in the way of','work around' \
+        self.keywordCTS['Homework'] = {'homework','review','homework review','at home','practice','assignment','assign','get in the way of','work around' \
                                        ,'assigned','progress','learned','improve','learn','skills','skill','out of session','outside of session' \
                                        ,'goal','better','barrier','in the way','expect','problems','problem','succeed','success'}
 
